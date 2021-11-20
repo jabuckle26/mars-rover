@@ -1,6 +1,7 @@
 import numpy as np
 
 from src.movements import Movements
+from src.orientations import Orientations
 from src.rover import Rover
 
 
@@ -119,3 +120,56 @@ def test_right_border_identified():
     rover = Rover(location, orientation, gridSize)
 
     assert rover.isCurrentlyFacingGridBorder()
+
+
+def test_first_sample_rover():
+#     1 2 N
+
+# LMLMLMLMM
+
+    location: list[int] = [1, 2]
+    orientation: str = 'NORTH'
+    rover = Rover(location, orientation, 5)
+
+    rover.rotate('L')
+    rover.move()
+    rover.rotate('L')
+    rover.move()
+    rover.rotate('L')
+    rover.move()
+    rover.rotate('L')
+    rover.move()
+    rover.move()
+
+    assert np.array_equal(rover.location, [1, 3])
+    assert rover.orientation == Orientations.NORTH.name
+
+
+def test_second_sample_rover():
+
+# 3 3 E
+# MM
+# R
+# MM
+# R
+# M
+# RR
+# M
+
+    location: list[int] = [3, 3]
+    orientation: str = 'EAST'
+    rover = Rover(location, orientation, 5)
+
+    rover.move()
+    rover.move()
+    rover.rotate('R')
+    rover.move()
+    rover.move()
+    rover.rotate('R')
+    rover.move()
+    rover.rotate('R')
+    rover.rotate('R')
+    rover.move()
+
+    assert np.array_equal(rover.location, [5, 1])
+    assert rover.orientation == Orientations.EAST.name
