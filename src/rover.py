@@ -21,13 +21,13 @@ class Rover():
             new_direction_pointer % len(Orientations)).name
 
     def isCurrentlyFacingGridBorder(self) -> bool:
-        if self.orientation == Orientations.NORTH.name and self.location[1] >= self.gridSize - 1:
+        if self.orientation == Orientations.NORTH.name and self.location[1] >= self.gridSize:
             return True
-        if self.orientation == Orientations.EAST.name and self.location[0] >= self.gridSize - 1:
+        if self.orientation == Orientations.EAST.name and self.location[0] >= self.gridSize:
             return True
-        if self.orientation == Orientations.SOUTH.name and self.location[1] <= 0:
+        if self.orientation == Orientations.SOUTH.name and self.location[1] <= 1:
             return True
-        if self.orientation == Orientations.WEST.name and self.location[0] <= 0:
+        if self.orientation == Orientations.WEST.name and self.location[0] <= 1:
             return True
         else:
             return False

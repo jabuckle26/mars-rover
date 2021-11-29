@@ -63,27 +63,27 @@ def test_can_rotate_multiple_times():
 
 
 def test_can_move_rover_by_one_space():
-    location: list[int] = [0, 0]
+    location: list[int] = [1, 1]
     orientation: str = 'NORTH'
     rover = Rover(location, orientation, gridSize)
 
     rover.move()
-    assert np.array_equal(rover.location, [0, 1])
+    assert np.array_equal(rover.location, [1, 2])
 
 
 def test_can_move_rover_multiple_spaces():
-    location: list[int] = [0, 0]
+    location: list[int] = [1, 1]
     orientation: str = 'EAST'
     rover = Rover(location, orientation, gridSize)
 
     rover.move()
     rover.move()
     rover.move()
-    assert np.array_equal(rover.location, [3, 0])
+    assert np.array_equal(rover.location, [4, 1])
 
 
 def test_can_check_if_not_facing_border_while_at_border():
-    location: list[int] = [0, 0]
+    location: list[int] = [1, 1]
     orientation: str = 'EAST'
     rover = Rover(location, orientation, gridSize)
 
@@ -91,7 +91,7 @@ def test_can_check_if_not_facing_border_while_at_border():
 
 
 def test_top_border_identified():
-    location: list[int] = [0, 4]
+    location: list[int] = [1, 5]
     orientation: str = 'NORTH'
     rover = Rover(location, orientation, gridSize)
 
@@ -99,7 +99,7 @@ def test_top_border_identified():
 
 
 def test_left_border_identified():
-    location: list[int] = [0, 3]
+    location: list[int] = [1, 3]
     orientation: str = 'WEST'
     rover = Rover(location, orientation, gridSize)
 
@@ -107,7 +107,7 @@ def test_left_border_identified():
 
 
 def test_bottom_border_identified():
-    location: list[int] = [2, 0]
+    location: list[int] = [2, 1]
     orientation: str = 'SOUTH'
     rover = Rover(location, orientation, gridSize)
 
@@ -115,7 +115,7 @@ def test_bottom_border_identified():
 
 
 def test_right_border_identified():
-    location: list[int] = [4, 2]
+    location: list[int] = [5, 2]
     orientation: str = 'EAST'
     rover = Rover(location, orientation, gridSize)
 
@@ -141,7 +141,7 @@ def test_first_sample_rover():
     rover.move()
     rover.move()
 
-    assert np.array_equal(rover.location, [1, 3])
+    assert np.array_equal(rover.location, [2, 3])
     assert rover.orientation == Orientations.NORTH.name
 
 
@@ -173,3 +173,7 @@ def test_second_sample_rover():
 
     assert np.array_equal(rover.location, [5, 1])
     assert rover.orientation == Orientations.EAST.name
+
+
+#Issues remain with indexes of grid
+#0 based index in the above code but 1 based index in the question
