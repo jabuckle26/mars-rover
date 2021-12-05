@@ -1,5 +1,7 @@
 import os
+
 from typing import List
+
 
 def extract_file_data(file_path: str):
     with open(file_path) as f:
@@ -10,6 +12,7 @@ def extract_file_data(file_path: str):
         commands: List[str] = [command for command in list(f.readline())]
         f.close()
     return grid_size, location, orientation, commands
+
 
 def parse_grid(grid_line: str) -> int:
     return grid_line[0]

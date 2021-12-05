@@ -1,8 +1,8 @@
 import numpy as np
 
+from .movements import Movements
 from .navigation_commands import Navigation_Commands
 from .orientations import Orientations
-from .movements import Movements
 from .rotations import Rotations
 
 
@@ -38,7 +38,6 @@ class Rover():
 
     def move(self):
         if not self.isCurrentlyFacingGridBorder():
-            
             self.location = np.add(
                 self.location, Movements[self.orientation].value)
 

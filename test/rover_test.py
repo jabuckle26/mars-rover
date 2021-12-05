@@ -1,4 +1,5 @@
 import numpy as np
+
 from src.rover.movements import Movements
 from src.rover.orientations import Orientations
 from src.rover.rover import Rover
@@ -116,6 +117,7 @@ def test_right_border_identified():
 
     assert rover.isCurrentlyFacingGridBorder()
 
+
 def test_rover_can_accept_rotate_command():
     location: list[int] = [1, 1]
     orientation: str = 'E'
@@ -127,6 +129,7 @@ def test_rover_can_accept_rotate_command():
     rover.navigate('R')
     assert rover.orientation == Orientations.E.name
 
+
 def test_rover_does_nothing_with_invalid_command():
     location: list[int] = [1, 1]
     orientation: str = 'E'
@@ -135,6 +138,7 @@ def test_rover_does_nothing_with_invalid_command():
     rover.navigate('invalid')
     assert rover.orientation == orientation
     assert rover.location == location
+
 
 def test_rover_moves_with_move_command():
     location: list[int] = [1, 1]
