@@ -7,10 +7,6 @@ from src.rover.rover import Rover
 gridSize: int = 5
 
 
-def test_first_test():
-    assert True
-
-
 def test_can_create_rover():
     location: list[int] = [0, 0]
     orientation: str = 'W'
@@ -131,12 +127,26 @@ def test_rover_can_accept_rotate_command():
     rover.navigate('R')
     assert rover.orientation == Orientations.E.name
 
+def test_rover_does_nothing_with_invalid_command():
+    location: list[int] = [1, 1]
+    orientation: str = 'E'
+    rover = Rover(gridSize, location, orientation)
+
+    rover.navigate('invalid')
+    assert rover.orientation == orientation
+    assert rover.location == location
+
+def test_rover_moves_with_move_command():
+    location: list[int] = [1, 1]
+    orientation: str = 'E'
+    rover = Rover(gridSize, location, orientation)
+
+    rover.navigate('M')
+    assert np.array_equal(rover.location, [2, 1])
+    assert rover.orientation == orientation
+
 
 def test_first_sample_rover():
-#     1 2 N
-
-# LMLMLMLMM
-
     location: list[int] = [1, 2]
     orientation: str = 'N'
     rover = Rover(gridSize, location, orientation)
@@ -156,16 +166,6 @@ def test_first_sample_rover():
 
 
 def test_second_sample_rover():
-
-# 3 3 E
-# MM
-# R
-# MM
-# R
-# M
-# RR
-# M
-
     location: list[int] = [3, 3]
     orientation: str = 'E'
     rover = Rover(gridSize, location, orientation)
@@ -183,7 +183,3 @@ def test_second_sample_rover():
 
     assert np.array_equal(rover.location, [5, 1])
     assert rover.orientation == Orientations.E.name
-
-
-#Issues remain with indexes of grid
-#0 based index in the above code but 1 based index in the question
