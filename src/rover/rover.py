@@ -27,13 +27,13 @@ class Rover():
         return self.orientation == Orientations.NORTH.name and self.location[1] >= self.gridSize
 
     def isFacingSouthernGridBorder(self) -> bool:
-        return self.orientation == Orientations.SOUTH.name and self.location[1] <= 1
+        return self.orientation == Orientations.SOUTH.name and self.location[1] <= 0
 
     def isFacingEasternGridBorder(self) -> bool:
         return self.orientation == Orientations.EAST.name and self.location[0] >= self.gridSize
 
     def isFacingWesternGridBorder(self) -> bool:
-        return self.orientation == Orientations.WEST.name and self.location[0] <= 1
+        return self.orientation == Orientations.WEST.name and self.location[0] <= 0
 
     def move(self):
         if not self.isCurrentlyFacingGridBorder():

@@ -1,9 +1,6 @@
 import numpy as np
-print(1)
 from src.rover.movements import Movements
-print(2)
 from src.rover.orientations import Orientations
-print(3)
 from src.rover.rover import Rover
 
 
@@ -101,7 +98,7 @@ def test_top_border_identified():
 
 
 def test_left_border_identified():
-    location: list[int] = [1, 3]
+    location: list[int] = [0, 3]
     orientation: str = 'WEST'
     rover = Rover(gridSize, location, orientation)
 
@@ -109,7 +106,7 @@ def test_left_border_identified():
 
 
 def test_bottom_border_identified():
-    location: list[int] = [2, 1]
+    location: list[int] = [2, 0]
     orientation: str = 'SOUTH'
     rover = Rover(gridSize, location, orientation)
 
@@ -143,7 +140,7 @@ def test_first_sample_rover():
     rover.move()
     rover.move()
 
-    assert np.array_equal(rover.location, [2, 3])
+    assert np.array_equal(rover.location, [1, 3])
     assert rover.orientation == Orientations.NORTH.name
 
 
