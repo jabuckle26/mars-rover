@@ -13,57 +13,57 @@ def test_first_test():
 
 def test_can_create_rover():
     location: list[int] = [0, 0]
-    orientation: str = 'WEST'
+    orientation: str = 'W'
     rover = Rover(gridSize, location, orientation)
     assert rover.location == location
-    assert rover.orientation == Movements.WEST.name
+    assert rover.orientation == Movements.W.name
 
 
 def test_can_rotate_rover_ninty_degrees_right():
     location: list[int] = [0, 0]
-    orientation: str = 'WEST'
+    orientation: str = 'W'
     rover = Rover(gridSize, location, orientation)
     assert rover.location == location
-    assert rover.orientation == Movements.WEST.name
+    assert rover.orientation == Movements.W.name
     rover.rotate('R')
     assert rover.location == location
-    assert rover.orientation == Movements.NORTH.name
+    assert rover.orientation == Movements.N.name
 
 
 def test_can_roate_rover_ninty_degrees_left():
     location: list[int] = [0, 0]
-    orientation: str = 'WEST'
+    orientation: str = 'W'
     rover = Rover(gridSize, location, orientation)
     assert rover.location == location
-    assert rover.orientation == Movements.WEST.name
+    assert rover.orientation == Movements.W.name
     rover.rotate('L')
     assert rover.location == location
-    assert rover.orientation == Movements.SOUTH.name
+    assert rover.orientation == Movements.S.name
 
 
 def test_can_rotate_multiple_times():
     location: list[int] = [0, 0]
-    orientation: str = 'WEST'
+    orientation: str = 'W'
     rover = Rover(gridSize, location, orientation)
     assert rover.location == location
-    assert rover.orientation == Movements.WEST.name
+    assert rover.orientation == Movements.W.name
     rover.rotate('L')
     assert rover.location == location
-    assert rover.orientation == Movements.SOUTH.name
+    assert rover.orientation == Movements.S.name
     rover.rotate('L')
     assert rover.location == location
-    assert rover.orientation == Movements.EAST.name
+    assert rover.orientation == Movements.E.name
     rover.rotate('L')
     assert rover.location == location
-    assert rover.orientation == Movements.NORTH.name
+    assert rover.orientation == Movements.N.name
     rover.rotate('R')
     assert rover.location == location
-    assert rover.orientation == Movements.EAST.name
+    assert rover.orientation == Movements.E.name
 
 
 def test_can_move_rover_by_one_space():
     location: list[int] = [1, 1]
-    orientation: str = 'NORTH'
+    orientation: str = 'N'
     rover = Rover(gridSize, location, orientation)
 
     rover.move()
@@ -72,7 +72,7 @@ def test_can_move_rover_by_one_space():
 
 def test_can_move_rover_multiple_spaces():
     location: list[int] = [1, 1]
-    orientation: str = 'EAST'
+    orientation: str = 'E'
     rover = Rover(gridSize, location, orientation)
 
     rover.move()
@@ -83,7 +83,7 @@ def test_can_move_rover_multiple_spaces():
 
 def test_can_check_if_not_facing_border_while_at_border():
     location: list[int] = [1, 1]
-    orientation: str = 'EAST'
+    orientation: str = 'E'
     rover = Rover(gridSize, location, orientation)
 
     assert rover.isCurrentlyFacingGridBorder() == False
@@ -91,7 +91,7 @@ def test_can_check_if_not_facing_border_while_at_border():
 
 def test_top_border_identified():
     location: list[int] = [1, 5]
-    orientation: str = 'NORTH'
+    orientation: str = 'N'
     rover = Rover(gridSize, location, orientation)
 
     assert rover.isCurrentlyFacingGridBorder()
@@ -99,7 +99,7 @@ def test_top_border_identified():
 
 def test_left_border_identified():
     location: list[int] = [0, 3]
-    orientation: str = 'WEST'
+    orientation: str = 'W'
     rover = Rover(gridSize, location, orientation)
 
     assert rover.isCurrentlyFacingGridBorder()
@@ -107,7 +107,7 @@ def test_left_border_identified():
 
 def test_bottom_border_identified():
     location: list[int] = [2, 0]
-    orientation: str = 'SOUTH'
+    orientation: str = 'S'
     rover = Rover(gridSize, location, orientation)
 
     assert rover.isCurrentlyFacingGridBorder()
@@ -115,10 +115,21 @@ def test_bottom_border_identified():
 
 def test_right_border_identified():
     location: list[int] = [5, 2]
-    orientation: str = 'EAST'
+    orientation: str = 'E'
     rover = Rover(gridSize, location, orientation)
 
     assert rover.isCurrentlyFacingGridBorder()
+
+def test_rover_can_accept_rotate_command():
+    location: list[int] = [1, 1]
+    orientation: str = 'E'
+    rover = Rover(gridSize, location, orientation)
+
+    rover.navigate('L')
+    assert rover.orientation == Orientations.N.name
+
+    rover.navigate('R')
+    assert rover.orientation == Orientations.E.name
 
 
 def test_first_sample_rover():
@@ -127,7 +138,7 @@ def test_first_sample_rover():
 # LMLMLMLMM
 
     location: list[int] = [1, 2]
-    orientation: str = 'NORTH'
+    orientation: str = 'N'
     rover = Rover(gridSize, location, orientation)
 
     rover.rotate('L')
@@ -141,7 +152,7 @@ def test_first_sample_rover():
     rover.move()
 
     assert np.array_equal(rover.location, [1, 3])
-    assert rover.orientation == Orientations.NORTH.name
+    assert rover.orientation == Orientations.N.name
 
 
 def test_second_sample_rover():
@@ -156,7 +167,7 @@ def test_second_sample_rover():
 # M
 
     location: list[int] = [3, 3]
-    orientation: str = 'EAST'
+    orientation: str = 'E'
     rover = Rover(gridSize, location, orientation)
 
     rover.move()
@@ -171,7 +182,7 @@ def test_second_sample_rover():
     rover.move()
 
     assert np.array_equal(rover.location, [5, 1])
-    assert rover.orientation == Orientations.EAST.name
+    assert rover.orientation == Orientations.E.name
 
 
 #Issues remain with indexes of grid
