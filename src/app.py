@@ -3,8 +3,8 @@ import os
 from rover.input_reader import extract_file_data
 from rover.rover import Rover
 
-file_1: str = os.path.join(os.getcwd(), 'src', 'input', 'input1.txt')
-file_2: str = os.path.join(os.getcwd(), 'src', 'input', 'input2.txt')
+file_1: str = os.path.join(os.getcwd(), 'input', 'input1.txt')
+file_2: str = os.path.join(os.getcwd(), 'input', 'input2.txt')
 
 gridsize_1, location_1, orientation_1, commands1 = extract_file_data(file_1)
 gridsize_2, location_2, orientation_2, commands2 = extract_file_data(file_2)
