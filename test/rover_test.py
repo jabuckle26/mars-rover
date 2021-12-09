@@ -1,5 +1,7 @@
 import numpy as np
+import pytest
 
+from src.ex.invalid_command_exception import InvalidCommandException
 from src.navigation.location import Location
 from src.rover.movement_scalars import MovementScalars
 from src.rover.orientations import Orientations
@@ -94,10 +96,11 @@ def test_rover_does_nothing_with_invalid_command():
     location: Location = Location(1, 1)
     orientation: str = 'E'
     rover = Rover(gridSize, location, orientation)
+    bad_command: str = 'invalid'
 
-    rover.navigate('invalid')
-    assert rover.orientation == orientation
-    assert rover.location == location
+    with pytest.raises(InvalidCommandException, match=f'Invalid Command: {bad_command}'):
+        rover.navigate(bad_command)
+
 
 
 def test_rover_moves_with_move_command():

@@ -5,6 +5,7 @@ from .movement_scalars import MovementScalars
 from .navigation_commands import NavigationCommands
 from .orientations import Orientations
 from .rotation_scalars import RotationScalars
+from ..ex.invalid_command_exception import InvalidCommandException
 from ..navigation.location import Location
 
 
@@ -52,3 +53,4 @@ class Rover:
             self.rotate(navigation_command)
         else:
             print(f'Invalid Command: {navigation_command}')
+            raise InvalidCommandException(f'Invalid Command: {navigation_command}')
