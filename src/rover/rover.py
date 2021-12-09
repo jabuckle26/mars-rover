@@ -23,7 +23,7 @@ class Rover:
         return self._location
 
     @location.setter
-    def location(self, location: Location):
+    def location(self, location: Location) -> None:
         self._location = location
 
     @property
@@ -31,22 +31,22 @@ class Rover:
         return self._orientation
 
     @orientation.setter
-    def orientation(self, orientation: str):
+    def orientation(self, orientation: str) -> None:
         self._orientation = orientation
 
-    def rotate(self, rotation_direction: str):
+    def rotate(self, rotation_direction: str) -> None:
         rotation: int = RotationScalars[rotation_direction].value
         new_direction_pointer: int = rotation + \
             Orientations[self._orientation].value
         self._orientation = Orientations(
             new_direction_pointer % len(Orientations)).name
 
-    def move(self):
+    def move(self) -> None:
         if not self._collision_detector.will_collide_with_border(self._location, self._orientation):
             self._location.update(add(
                 self._location.coordinate(), MovementScalars[self._orientation].value))
 
-    def navigate(self, navigation_command: str):
+    def navigate(self, navigation_command: str) -> None:
         if navigation_command == NavigationCommands.MOVEMENT.value:
             self.move()
         elif navigation_command in NavigationCommands.ROTATION.value:
