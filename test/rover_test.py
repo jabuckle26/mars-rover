@@ -102,7 +102,6 @@ def test_rover_does_nothing_with_invalid_command():
         rover.navigate(bad_command)
 
 
-
 def test_rover_moves_with_move_command():
     location: Location = Location(1, 1)
     orientation: str = 'E'
