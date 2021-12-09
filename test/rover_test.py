@@ -4,7 +4,6 @@ from src.rover.movements import Movements
 from src.rover.orientations import Orientations
 from src.rover.rover import Rover
 
-
 gridSize: int = 5
 
 
@@ -27,7 +26,7 @@ def test_can_rotate_rover_ninty_degrees_right():
     assert rover.orientation == Movements.N.name
 
 
-def test_can_roate_rover_ninty_degrees_left():
+def test_can_rotate_rover_ninty_degrees_left():
     location: list[int] = [0, 0]
     orientation: str = 'W'
     rover = Rover(gridSize, location, orientation)
