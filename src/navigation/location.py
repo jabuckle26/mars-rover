@@ -5,29 +5,29 @@ from typing import List
 class Location:
 
     def __init__(self, x: int, y: int):
-        self.__x: int = x
-        self.__y: int = y
+        self._x: int = x
+        self._y: int = y
 
     @property
     def x(self) -> int:
-        return self.__x
+        return self._x
 
     @x.setter
     def x(self, x: int) -> None:
-        self.__x = x
+        self._x = x
 
     @property
     def y(self) -> int:
-        return self.__y
+        return self._y
 
     @y.setter
     def y(self, y: int) -> None:
-        self.__y = y
+        self._y = y
 
     def coordinate(self) -> List[int]:
-        return [self.__x, self.__y]
+        return [self._x, self._y]
 
     def update(self, location_array: np.ndarray) -> None:
-        self.__x = location_array[0]
-        self.__y = location_array[1]
+        self._x = location_array[0]
+        self._y = location_array[1]
 
