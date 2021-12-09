@@ -1,6 +1,6 @@
 from enum import Enum
 
 
-class Navigation_Commands(Enum):
+class NavigationCommands(Enum):
     MOVEMENT = 'M'
     ROTATION = ['L', 'R']

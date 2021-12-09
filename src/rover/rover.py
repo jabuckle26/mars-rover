@@ -1,7 +1,8 @@
 from numpy import add
 
+from .collision_detector import CollisionDetector
 from .movement_scalars import MovementScalars
-from .navigation_commands import Navigation_Commands
+from .navigation_commands import NavigationCommands
 from .orientations import Orientations
 from .rotation_scalars import RotationScalars
 
@@ -12,15 +13,8 @@ class Rover:
         self.__grid_size: int = grid_size
         self.__location: list[int] = location
         self.__orientation: str = orientation
+        self.__collision_detector: CollisionDetector = CollisionDetector(grid_size)
         pass
-
-    @property
-    def grid_size(self):
-        return self.__grid_size
-
-    @grid_size.setter
-    def grid_size(self, grid_size: int):
-        self.__grid_size = grid_size
 
     @property
     def location(self):
@@ -45,30 +39,15 @@ class Rover:
         self.__orientation = Orientations(
             new_direction_pointer % len(Orientations)).name
 
-    def isCurrentlyFacingGridBorder(self) -> bool:
-        return self.isFacingEasternGridBorder() or self.isFacingNorthernGridBorder() or self.isFacingWesternGridBorder() or self.isFacingSouthernGridBorder()
-
-    def isFacingNorthernGridBorder(self) -> bool:
-        return self.__orientation == Orientations.N.name and self.__location[1] >= self.grid_size
-
-    def isFacingSouthernGridBorder(self) -> bool:
-        return self.__orientation == Orientations.S.name and self.__location[1] <= 0
-
-    def isFacingEasternGridBorder(self) -> bool:
-        return self.__orientation == Orientations.E.name and self.__location[0] >= self.grid_size
-
-    def isFacingWesternGridBorder(self) -> bool:
-        return self.__orientation == Orientations.W.name and self.__location[0] <= 0
-
     def move(self):
-        if not self.isCurrentlyFacingGridBorder():
+        if not self.__collision_detector.will_collide_with_border(self.__location, self.__orientation):
             self.__location = add(
                 self.__location, MovementScalars[self.__orientation].value)
 
     def navigate(self, navigation_command: str):
-        if navigation_command == Navigation_Commands.MOVEMENT.value:
+        if navigation_command == NavigationCommands.MOVEMENT.value:
             self.move()
-        elif navigation_command in Navigation_Commands.ROTATION.value:
+        elif navigation_command in NavigationCommands.ROTATION.value:
             self.rotate(navigation_command)
         else:
             print(f'Invalid Command: {navigation_command}')

@@ -77,46 +77,6 @@ def test_can_move_rover_multiple_spaces():
     assert np.array_equal(rover.location, [4, 1])
 
 
-def test_can_check_if_not_facing_border_while_at_border():
-    location: list[int] = [1, 1]
-    orientation: str = 'E'
-    rover = Rover(gridSize, location, orientation)
-
-    assert rover.isCurrentlyFacingGridBorder() == False
-
-
-def test_top_border_identified():
-    location: list[int] = [1, 5]
-    orientation: str = 'N'
-    rover = Rover(gridSize, location, orientation)
-
-    assert rover.isCurrentlyFacingGridBorder()
-
-
-def test_left_border_identified():
-    location: list[int] = [0, 3]
-    orientation: str = 'W'
-    rover = Rover(gridSize, location, orientation)
-
-    assert rover.isCurrentlyFacingGridBorder()
-
-
-def test_bottom_border_identified():
-    location: list[int] = [2, 0]
-    orientation: str = 'S'
-    rover = Rover(gridSize, location, orientation)
-
-    assert rover.isCurrentlyFacingGridBorder()
-
-
-def test_right_border_identified():
-    location: list[int] = [5, 2]
-    orientation: str = 'E'
-    rover = Rover(gridSize, location, orientation)
-
-    assert rover.isCurrentlyFacingGridBorder()
-
-
 def test_rover_can_accept_rotate_command():
     location: list[int] = [1, 1]
     orientation: str = 'E'
