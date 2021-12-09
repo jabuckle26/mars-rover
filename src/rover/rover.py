@@ -1,6 +1,6 @@
 from numpy import add
 
-from .movement_vectors import MovementVectors
+from .movement_scalars import MovementScalars
 from .navigation_commands import Navigation_Commands
 from .orientations import Orientations
 from .rotation_scalars import RotationScalars
@@ -63,7 +63,7 @@ class Rover:
     def move(self):
         if not self.isCurrentlyFacingGridBorder():
             self.__location = add(
-                self.__location, MovementVectors[self.__orientation].value)
+                self.__location, MovementScalars[self.__orientation].value)
 
     def navigate(self, navigation_command: str):
         if navigation_command == Navigation_Commands.MOVEMENT.value:
