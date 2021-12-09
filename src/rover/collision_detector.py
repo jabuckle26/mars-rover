@@ -21,6 +21,7 @@ class CollisionDetector:
         def is_facing_western_grid_border() -> bool:
             return orientation == Orientations.W.name and current_location[0] <= 0
 
-        return is_facing_northern_grid_border() or is_facing_southern_grid_border() or is_facing_eastern_grid_border() or is_facing_western_grid_border()
-
-
+        return is_facing_northern_grid_border() or \
+            is_facing_southern_grid_border() or \
+            is_facing_eastern_grid_border() or \
+            is_facing_western_grid_border()
