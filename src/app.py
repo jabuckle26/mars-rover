@@ -1,6 +1,6 @@
 import os
 
-from rover.input_reader import extract_file_data
+from src.input.input_reader import extract_file_data
 from rover.rover import Rover
 
 file_1: str = os.path.join(os.getcwd(), 'input', 'input1.txt')

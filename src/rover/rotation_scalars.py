@@ -1,6 +1,6 @@
 from enum import Enum
 
 
-class Rotations(Enum):
+class RotationScalars(Enum):
     L = -1
     R = 1

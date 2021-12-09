@@ -1,6 +1,6 @@
 import numpy as np
 
-from src.rover.movements import Movements
+from src.rover.movement_vectors import MovementVectors
 from src.rover.orientations import Orientations
 from src.rover.rover import Rover
 
@@ -12,7 +12,7 @@ def test_can_create_rover():
     orientation: str = 'W'
     rover = Rover(gridSize, location, orientation)
     assert rover.location == location
-    assert rover.orientation == Movements.W.name
+    assert rover.orientation == MovementVectors.W.name
 
 
 def test_can_rotate_rover_ninty_degrees_right():
@@ -20,10 +20,10 @@ def test_can_rotate_rover_ninty_degrees_right():
     orientation: str = 'W'
     rover = Rover(gridSize, location, orientation)
     assert rover.location == location
-    assert rover.orientation == Movements.W.name
+    assert rover.orientation == MovementVectors.W.name
     rover.rotate('R')
     assert rover.location == location
-    assert rover.orientation == Movements.N.name
+    assert rover.orientation == MovementVectors.N.name
 
 
 def test_can_rotate_rover_ninty_degrees_left():
@@ -31,10 +31,10 @@ def test_can_rotate_rover_ninty_degrees_left():
     orientation: str = 'W'
     rover = Rover(gridSize, location, orientation)
     assert rover.location == location
-    assert rover.orientation == Movements.W.name
+    assert rover.orientation == MovementVectors.W.name
     rover.rotate('L')
     assert rover.location == location
-    assert rover.orientation == Movements.S.name
+    assert rover.orientation == MovementVectors.S.name
 
 
 def test_can_rotate_multiple_times():
@@ -42,19 +42,19 @@ def test_can_rotate_multiple_times():
     orientation: str = 'W'
     rover = Rover(gridSize, location, orientation)
     assert rover.location == location
-    assert rover.orientation == Movements.W.name
+    assert rover.orientation == MovementVectors.W.name
     rover.rotate('L')
     assert rover.location == location
-    assert rover.orientation == Movements.S.name
+    assert rover.orientation == MovementVectors.S.name
     rover.rotate('L')
     assert rover.location == location
-    assert rover.orientation == Movements.E.name
+    assert rover.orientation == MovementVectors.E.name
     rover.rotate('L')
     assert rover.location == location
-    assert rover.orientation == Movements.N.name
+    assert rover.orientation == MovementVectors.N.name
     rover.rotate('R')
     assert rover.location == location
-    assert rover.orientation == Movements.E.name
+    assert rover.orientation == MovementVectors.E.name
 
 
 def test_can_move_rover_by_one_space():

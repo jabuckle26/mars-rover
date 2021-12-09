@@ -1,9 +1,9 @@
 from numpy import add
 
-from .movements import Movements
+from .movement_vectors import MovementVectors
 from .navigation_commands import Navigation_Commands
 from .orientations import Orientations
-from .rotations import Rotations
+from .rotation_scalars import RotationScalars
 
 
 class Rover:
@@ -39,7 +39,7 @@ class Rover:
         self.__orientation = orientation
 
     def rotate(self, rotation_direction: str):
-        rotation: int = Rotations[rotation_direction].value
+        rotation: int = RotationScalars[rotation_direction].value
         new_direction_pointer: int = rotation + \
             Orientations[self.__orientation].value
         self.__orientation = Orientations(
@@ -63,7 +63,7 @@ class Rover:
     def move(self):
         if not self.isCurrentlyFacingGridBorder():
             self.__location = add(
-                self.__location, Movements[self.__orientation].value)
+                self.__location, MovementVectors[self.__orientation].value)
 
     def navigate(self, navigation_command: str):
         if navigation_command == Navigation_Commands.MOVEMENT.value:
